@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-sans), "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  
+  --color-primary: #0ea495;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #3c665f;
+  --color-secondary-foreground: #ffffff;
+  --color-accent: #f59e0b;
+  --color-accent-foreground: #ffffff;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted);
+  --color-card: var(--card);
+  --color-card-foreground: var(--foreground);
+  --color-border: var(--border);
+}
+
+:root {
+  --background: #FDFBF7;
+  --foreground: #1C1917;
+  --muted: #78716C;
+  --card: #ffffff;
+  --border: #dee4e1;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0C0A09;
+    --foreground: #FAFAF9;
+    --muted: #A8A29E;
+    --card: #1C1917;
+    --border: #292524;
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground antialiased;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@layer components {
+  .soft-card {
+    @apply rounded-2xl bg-white shadow-[0_4px_14px_rgba(28,25,23,0.05)] border border-slate-100/50;
+  }
+  
+  .soft-shadow {
+    @apply shadow-[0_4px_14px_rgba(28,25,23,0.05)];
+  }
+  
+  .status-pill {
+    @apply rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-wider;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 bg-white border border-[#dee4e1]/50 rounded-xl text-[#1C1917] placeholder:text-[#78716C]/50 transition-all focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/10;
+  }
+
+  .btn-primary {
+    @apply w-full bg-primary hover:bg-primary/90 text-white py-4 rounded-xl font-bold text-base shadow-lg shadow-primary/20 transition-all active:scale-[0.98] flex items-center justify-center gap-2;
+  }
+}
