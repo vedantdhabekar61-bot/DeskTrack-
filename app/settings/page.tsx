@@ -74,7 +74,10 @@ export default function SettingsPage() {
             </div>
 
             <button
-              onClick={logout}
+              onClick={async () => {
+                await logout();
+                window.location.href = '/login';
+              }}
               className="w-full h-14 rounded-2xl bg-background border border-border/50 flex items-center justify-between px-5 font-bold text-muted hover:bg-muted/5 active:scale-95 transition-all"
             >
               <div className="flex items-center gap-3">
