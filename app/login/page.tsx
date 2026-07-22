@@ -29,7 +29,7 @@ export default function LoginPage() {
       // Use the Vercel URL as redirect (not window.location.origin)
       // This ensures the callback works correctly even inside WebView
       const redirectUrl = isMedianApp 
-        ? 'https://stumanage-mu.vercel.app/auth/callback'
+        ? 'https://desk-track.vercel.app/auth/callback'
         : `${window.location.origin}/auth/callback`;
 
       const { error } = await supabase.auth.signInWithOAuth({
