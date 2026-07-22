@@ -20,10 +20,23 @@ export default function SignUpPage() {
   const handleGoogleSignUp = async () => {
     setIsGoogleLoading(true);
     try {
+      // Detect if running inside median.co wrapped app
+      const isMedianApp = typeof window !== 'undefined' && 
+        (navigator.userAgent.includes('median') || 
+         navigator.userAgent.includes('gonative') ||
+         (window as any).median);
+      
+      // Use the Vercel URL as redirect (not window.location.origin)
+      // This ensures the callback works correctly even inside WebView
+      const redirectUrl = isMedianApp 
+        ? 'https://stumanage-mu.vercel.app/auth/callback'
+        : `${window.location.origin}/auth/callback`;
+
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: `${window.location.origin}/auth/callback`,
+          redirectTo: redirectUrl,
+          skipBrowserRedirect: isMedianApp,
         },
       });
       if (error) throw error;
